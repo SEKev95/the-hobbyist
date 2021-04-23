@@ -1,0 +1,79 @@
+<!Doctype html>
+<html>
+<head>
+    <title>The Hobbyist</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+<div class="containerBoba">
+    
+  
+        
+  
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <!-- <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>id</strong>: <%= user.local.username %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                <% } else { %>
+                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                <% } %>
+
+            </div>
+        </div> -->
+        <section class="leftside">
+          <img class="leftlogo" src="img/logo.png">
+          <h1>*UserName*</h1>
+          <h1><a href="/feed"><i class="fas fa-bars"></i>Feed</a></h1>
+          <h1><a href="/profile"><i class="fas fa-user-alt"></i>My Profile</a></h1>
+          <h1><i class="fas fa-comments"></i>Forum</h1>
+          <h1><i class="fas fa-store"></i>Marketplace</h1>
+          <h1><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></h1>
+        </section>
+      <section class="midsect">
+       
+        <div class="col-sm-6">
+          <form id="createPost">
+            <input type="file" class="picture" name="file-to-upload">
+            <input type="text" class="caption" name="caption">
+            <input type="submit" value="POST!">
+          </form>
+ <h1>Feed</h1>
+          <ul id="feed">
+            <% for(var i=0; i<posts.length; i++) {%>
+            <li class="post">
+              <a href="/post?id=<%=posts[i]._id%>"><img class="picture" src="<%=posts[i].image %>"></a>
+              <span class="caption"><%= posts[i].caption %></span>
+              <button class="commentBox">Comment</button>
+              <form class="comment hide">
+                <input class="text "type="text">
+                <input class="submitComment" type="submit" value=">">
+                <button class="cancel">Cancel</button>
+              </form>
+            </li>
+          <% } %>
+          </ul>
+        </ul>
+      </section>
+</div>
+
+<script src="feed.js"></script>
+
+</body>
+
+</html>

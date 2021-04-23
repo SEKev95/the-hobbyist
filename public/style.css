@@ -1,0 +1,140 @@
+/* body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background-image: url('https://image.freepik.com/free-vector/cute-seamless-bubble-milk-tea-pattern_33403-196.jpg');
+}
+
+
+/* .containerBoba{
+  width:80%;
+  background-color: antiquewhite;
+  margin-left:10%;
+}
+
+h3,h4{
+  text-align: center;
+  font-weight:bolder;
+}
+.jumbotron{
+width:40%;
+}
+
+.messages{
+  padding:5%;
+  font-size: 15px;
+  margin-left:25%;
+  font-weight: bolder;
+  background-color: rgb(236, 201, 155);
+  width: 55%;
+}
+.cashierContainer{
+  position:absolute;
+  bottom:25%;
+  right:10%;
+  background-color: antiquewhite;
+  width:45%;
+  height:50%;
+  text-align: center;
+}
+.well{
+padding:5%;
+margin-left:10%;
+font-size: 15px;
+}
+.cashierTitle{
+  padding: 5%;
+  font-size: 18px;
+}
+
+button{
+  margin:5%;
+}  */
+
+img{
+  height: 200px;
+}
+
+body{
+  background-color: rgba(16,24,39,255);
+}
+.logo{
+  height: 150px;
+  float: left;
+  padding-right: 50%;
+  margin-right: 15%;
+  
+}
+.main{
+  height: 600px;
+  float: left;
+}
+h3{
+  color: white;
+}
+.intro{
+  width: 25%;
+  float: left;
+}
+.container{
+  width: 60%;
+}
+.btn:hover{
+  background-color: rgba(178,18,155,255);
+  color: white;
+}
+p{
+  color: white;
+}
+label{
+  color: white;
+}
+.lands{
+  color: white;
+}
+.landslogo{
+  padding-left: 10%;
+}
+.leftside{
+  color: white;
+  float: left;
+  padding-left: 5%;
+
+
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 8px rgb(39, 39, 39);
+  width: 450px;
+  height: 800px;
+  text-align: center;
+  background-color: rgba(16,24,39,255);
+  
+}
+.btnl{
+  float: right;
+}
+a{
+  color: white;
+}
+a:hover{
+  color: rgba(178,18,155,255);
+}
+.midsect{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 800px;
+  text-align: center;
+  background-color: rgba(16,24,39,255);
+}
+.capname{
+  font-weight: bold;
+  color: rgb(182, 48, 70) !important;
+}
+.caption{
+  color: white;
+  font-family: "Inter", sans-serif;
+}

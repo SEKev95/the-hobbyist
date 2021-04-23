@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link href="assets/images/favicon.png" rel="icon" type="image/png">
+    
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Instello Sharing Photos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Instello - Sharing Photos platform HTML Template">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="assets/css/icons.css">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="assets/css/uikit.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tailwind-dark.css">
+
+    <style>
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 950px !important;
+                padding-top: 30px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="wrapper">
+
+        <div class="sidebar">
+            <div class="sidebar_header border-b border-gray-200 from-gray-100 to-gray-50 bg-gradient-to-t  uk-visible@s"> 
+                <a href="#">
+                    <img src="assets/images/logo.png">
+                    <img src="assets/images/logo-light.png" class="logo_inverse">
+                </a>
+                <!-- btn night mode -->
+                <a href="#" id="night-mode" class="btn-night-mode" data-tippy-placement="left" title="Switch to dark mode"></a>
+            </div>
+            <div class="border-b border-gray-20 flex justify-between items-center p-3 pl-5 relative uk-hidden@s">
+                <h3 class="text-xl"> Navigation </h3>
+                <span class="btn-mobile" uk-toggle="target: #wrapper ; cls: sidebar-active"></span>
+            </div>
+            <div class="sidebar_inner" data-simplebar>
+                <div class="flex flex-col items-center my-6 uk-visible@s">
+                    <div
+                        class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24">
+                        <img src="assets/images/avatars/avatar-2.jpg"
+                            class="bg-gray-200 border-4 border-white rounded-full w-full h-full">
+                    </div>
+                    <a href="/profile" class="text-xl font-medium capitalize mt-4 uk-link-reset"> Kevin Charles
+                    </a>
+                    <div class="flex justify-around w-full items-center text-center uk-link-reset text-gray-800 mt-6">
+                        <div>
+                            <a href="#">
+                                <strong>Post</strong>
+                                <div> 130</div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <strong>Following</strong>
+                                <div> 1,230</div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <strong>Followers</strong>
+                                <div> 2,430</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="-mx-4 -mt-1 uk-visible@s">
+                <ul>
+                    <li>
+                        <a href="/feed"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg> 
+                            <span> Feed </span> </a> 
+                    </li>
+                    <!-- <li>
+                        <a href="explore.html"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <span> Explore </span> </a> 
+                    </li> -->
+                    <li class="active">
+                        <a href="/chat"> 
+                            <i class="uil-location-arrow"></i>
+                            <span> Message Board </span> <span class="nav-tag"> 3</span>  </a> 
+                    </li>
+                    <!-- <li>
+                        <a href="trending.html"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                            </svg>
+                            <span> Trending </span> </a> 
+                    </li> -->
+                    <li>
+                        <a href="/market"> 
+                            <i class="uil-store"></i>
+                            <span> Marketplace </span> </a> 
+                    </li>
+                    <li>
+                        <a href="/setting"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span> Settings </span> 
+                        </a> 
+                        <!-- <ul>
+                            <li><a href="setting.html">General </a></li>
+                            <li><a href="setting.html"> Account setting </a></li>
+                            <li><a href="setting.html">Billing  <span class="nav-tag">3</span> </a></li>
+                        </ul> -->
+                    </li>
+                    <li>
+                        <a href="/profile"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            <span> My Profile </span> </a> 
+                    </li>
+                    <li>
+                        <hr class="my-2">
+                    </li>
+                    <li>
+                        <a href="/login"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                           <span> Logout </span> </a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main_content">
+
+            
+            
+ 
+            <div class="container m-auto pt-5">
+                <h1 class="font-semibold lg:mb-6 mb-3 text-2xl"> Post</h1> 
+                <div class="post">
+                    <a href="/post?id=<%=post._id%>"><img class="picture" src="<%=post.image %>"></a>
+                    <span class="caption"><%= post.caption %></span>
+                    <button class="commentBox">Comment</button>
+                        <form class="comment hide">
+                            <input class="text "type="text">
+                            <input class="submitComment" type="submit" value=">">
+                            <button class="cancel">Cancel</button>
+                            
+                        </form>
+                        <button><i class="fa fa-trash"></i>delete</button>
+                    <% for(i = comments.length-1; i > 0; i--) { %>
+                        <% if (comments[i].post == post._id) { %>
+                            <p class="comments"><%= comments[i].comment%> | <span><%= comments[i].timestamp %></span></p>
+                            
+                            <% } %>
+                    <% } %>
+                </div>
+                 <!--<h1 class="font-semibold lg:mb-6 mb-3 text-2xl"> Message Board</h1> 
+
+                <div class="lg:flex lg:shadow lg:bg-white lg:space-y-0 space-y-8 rounded-md lg:-mx-0 -mx-5 overflow-hidden lg:dark:bg-gray-800">
+                 left message -->
+                    <!-- <div class="lg:w-4/12 bg-white border-r overflow-hidden dark:bg-gray-800 dark:border-gray-600"> --> 
+ 
+                        <!-- search -->
+                        <!-- <div class="border-b px-4 py-4 dark:border-gray-600">
+                            <div class="bg-gray-100 input-with-icon rounded-md dark:bg-gray-700">
+                                <input id="autocomplete-input" type="text" placeholder="Search" class="bg-transparent max-h-10 shadow-none">
+                                <i class="icon-material-outline-search"></i>
+                            </div>
+                        </div> -->
+
+                        <!-- user list-->
+                        <!-- <div class="pb-16 w-full">
+                            <ul class="dark:text-gray-100">
+                                <li>
+                                    <a href="#" class="block flex items-center py-3 px-4 space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <div class="w-12 h-12 rounded-full relative flex-shrink-0">
+                                            <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                            <span class="absolute bg-green-500 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0 relative text-gray-500">
+                                            <h4 class="text-black font-semibold dark:text-white">David Peterson</h4>
+                                            <span class="absolute right-0 top-1 text-xs">Sun</span>
+                                            <p class="truncate">Esmod tincidunt ut laoreet</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block flex items-center py-3 px-4 space-x-3 bg-gray-100 dark:bg-gray-700">
+                                        <div class="w-12 h-12 rounded-full relative flex-shrink-0">
+                                            <img src="assets/images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                            <span class="absolute bg-green-500 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0 relative text-gray-500">
+                                            <h4 class="text-black font-semibold dark:text-white">Sindy Forest</h4>
+                                            <span class="absolute right-0 top-1 text-xs"> Mon</span>
+                                            <p class="truncate">Seddiam nonummy nibh euismod laoreet</p>
+                                        </div>
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a href="#" class="block flex items-center py-3 px-4 space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <div class="w-12 h-12 rounded-full relative flex-shrink-0">
+                                            <img src="assets/images/avatars/avatar-5.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                            <span class="absolute bg-gray-300 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0 relative text-gray-500">
+                                            <h4 class="text-black font-semibold dark:text-white"> Zara Ali </h4>
+                                            <span class="absolute right-0 top-1 text-xs">4 hours ago</span>
+                                            <p class="truncate">Consectetuer adiscing elit</p>
+                                        </div>
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a href="#" class="block flex items-center py-3 px-4 space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <div class="w-12 h-12 rounded-full relative flex-shrink-0">
+                                            <img src="assets/images/avatars/avatar-4.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                            <span class="absolute bg-green-500 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0 relative text-gray-500">
+                                            <h4 class="text-black font-semibold dark:text-white">David Peterson</h4>
+                                            <span class="absolute right-0 top-1 text-xs">Week ago</span>
+                                            <p class="truncate">Nam liber tempor <i class="uil-grin-tongue-wink"></i></p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block flex items-center py-3 px-4 space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <div class="w-12 h-12 rounded-full relative flex-shrink-0">
+                                            <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                            <span class="absolute bg-green-500 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0 relative text-gray-500">
+                                            <h4 class="text-black font-semibold dark:text-white">David Peterson</h4>
+                                            <span class="absolute right-0 top-1 text-xs">Week ago</span>
+                                            <p class="truncate">Esmod tincidunt ut laoreet</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+
+                    <!-- message-->
+                    <!-- <div class="lg:w-8/12 bg-white dark:bg-gray-800"> -->
+
+                        <!-- <div class="px-5 py-4 flex uk-flex-between">                        
+                        
+                            <a href="#" class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full relative flex-shrink-0">
+                                    <img src="assets/images/avatars/avatar-1.jpg" alt="" class="h-full rounded-full w-full">
+                                    <span
+                                        class="absolute bg-green-500 border-2 border-white bottom-0 h-3 m-0.5 right-0 rounded-full shadow-md w-3"></span>
+                                </div>
+                                <div class="flex-1 min-w-0 relative text-gray-500">
+                                    <h4 class="font-semibold text-black text-lg">Sindy Forest</h4>
+                        
+                                    <p class="font-semibold leading-3 text-green-500 text-sm">is online</p>
+                                </div>
+                            </a>                        
+                        
+                            <a href="#" class="flex hover:text-red-400 items-center leading-8 space-x-2 text-red-500 font-medium"> 
+                                <i class="uil-trash-alt"></i> <span class="lg:block hidden"> Delete Conversation </span> 
+                            </a>
+                        </div> -->
+                         
+                        <!-- <div class="border-t dark:border-gray-600">
+
+                            <div class="lg:p-8 p-4 space-y-5">
+
+                                <h3 class="lg:w-60 mx-auto text-sm uk-heading-line uk-text-center lg:pt-2"><span> 28 June, 2018 </span></h3>
+                                
+                                my message
+                                <div class="flex lg:items-center flex-row-reverse">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-white py-2 px-3 rounded bg-blue-600 relative h-full lg:mr-5 mr-2 lg:ml-20">
+                                        <p class="leading-6">consectetuer adipiscing elit, sed diam nonummy nibh euismod laoreet dolore magna <i class="uil-grin-tongue-wink"></i> </p>
+                                        <div class="absolute w-3 h-3 top-3 -right-1 bg-blue-600 transform rotate-45"></div>
+                                    </div>
+                                </div>
+
+                                <h3 class="lg:w-60 mx-auto text-sm uk-heading-line uk-text-center lg:pt-2"><span> 28 June, 2018 </span></h3>
+                               
+                                <div class="flex lg:items-center">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-gray-700 py-2 px-3 rounded bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20 dark:bg-gray-700 dark:text-white">
+                                        <p class="leading-6">In ut odio libero vulputate <urna class="i uil-heart"></urna> <i class="uil-grin-tongue-wink"> </i> </p>
+                                        <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                                my message
+                                <div class="flex lg:items-center flex-row-reverse">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-white py-2 px-3 rounded bg-blue-600 relative h-full lg:mr-5 mr-2 lg:ml-20">
+                                        <p class="leading-6">Nam liber tempor cum soluta nobis eleifend option <i class="uil-grin-tongue-wink-alt"></i></p>
+                                        <div class="absolute w-3 h-3 top-3 -right-1 bg-blue-600 transform rotate-45"></div>
+                                    </div>
+                                </div>
+                               
+                                <h3 class="lg:w-60 mx-auto text-sm uk-heading-line uk-text-center lg:pt-2"><span> 28 June, 2018 </span></h3>
+                                <div class="flex lg:items-center flex-row-reverse">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-white py-2 px-3 rounded bg-blue-600 relative h-full lg:mr-5 mr-2 lg:ml-20">
+                                        <p class="leading-6">consectetuer adipiscing elit, sed diam nonummy nibh euismod laoreet dolore magna.</p>
+                                        <div class="absolute w-3 h-3 top-3 -right-1 bg-blue-600 transform rotate-45"></div>
+                                    </div>
+                                </div>
+
+                                <h3 class="lg:w-60 mx-auto text-sm uk-heading-line uk-text-center lg:pt-2"><span> 28 June, 2018 </span></h3>
+
+                                <div class="flex lg:items-center">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-gray-700 py-2 px-3 rounded bg-gray-100 relative h-full lg:ml-5 ml-2 lg:mr-20 dark:bg-gray-700 dark:text-white">
+                                        <p class="leading-6">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming </p>
+                                        <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                                my message
+                                
+                                <div class="flex lg:items-center flex-row-reverse">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-2.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-white py-2 px-3 rounded bg-blue-600 relative h-full lg:mr-5 mr-2 lg:ml-20">
+                                        <p class="leading-6">quis nostrud exerci tation ullamcorper suscipit .</p>
+                                        <div class="absolute w-3 h-3 top-3 -right-1 bg-blue-600 transform rotate-45"></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex lg:items-center">
+                                    <div class="w-14 h-14 rounded-full relative flex-shrink-0">
+                                        <img src="assets/images/avatars/avatar-1.jpg" alt="" class="absolute h-full rounded-full w-full">
+                                    </div>
+                                    <div class="text-gray-700 py-2 px-3 rounded bg-gray-100 relative h-full lg:ml-5 ml-2 lg:mr-20 dark:bg-gray-700 dark:text-white">
+
+                                        <div class="flex space-x-0.5 my-2 animate-pulse">  
+                                            <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+                                            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                                            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                                        </div>
+                                        <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="border-t flex p-6 dark:border-gray-700">
+                                <textarea cols="1" rows="1" placeholder="Your Message.." class="border-0 flex-1 h-10 min-h-0 resize-none min-w-0 shadow-none dark:bg-transparent"></textarea>
+                                <div class="flex h-full space-x-2">
+                                    <button type="submit" class="bg-blue-600 font-semibold px-6 py-2 rounded-md text-white">Send</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div> 
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div> -->
+
+
+    <script>
+        
+        (function (window, document, undefined) {
+            'use strict';
+            if (!('localStorage' in window)) return;
+            var nightMode = localStorage.getItem('gmtNightMode');
+            if (nightMode) {
+                document.documentElement.className += ' dark';
+            }
+        })(window, document);
+    
+    
+        (function (window, document, undefined) {
+    
+            'use strict';
+    
+            // Feature test
+            if (!('localStorage' in window)) return;
+    
+            // Get our newly insert toggle
+            var nightMode = document.querySelector('#night-mode');
+            if (!nightMode) return;
+    
+            // When clicked, toggle night mode on or off
+            nightMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('gmtNightMode', true);
+                    return;
+                }
+                localStorage.removeItem('gmtNightMode');
+            }, false);
+    
+        })(window, document);
+    </script>
+ <!-- Scripts
+    ==================================================  -->
+    <script src="assets/js/tippy.all.min.js"></script>  
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/uikit.js"></script>
+    <script src="assets/js/simplebar.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+</body>
+
+</html>

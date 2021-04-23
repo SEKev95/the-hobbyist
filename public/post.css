@@ -1,0 +1,17 @@
+img {
+    width: 300px;
+    height: auto;
+}
+.hide {
+    display: none;
+}
+.postpicture{
+    height: 450px;
+    width: 400px;
+}
+.container{
+    padding: 120px;
+}
+.caption{
+    font-size: 30px;
+}
