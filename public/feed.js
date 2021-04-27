@@ -4,6 +4,7 @@ form.addEventListener('submit', createPost);
 ul.addEventListener('click', showCommentBox);
 ul.addEventListener('submit', commentPost);
 
+
 function createPost(e) {
     e.preventDefault();
 

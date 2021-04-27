@@ -24,12 +24,13 @@ function commentPost(e) {
     if (e.target.className === 'comment') {
         const comment = this.querySelector('.text').value;
         const postId = e.target.closest('.post').querySelector('a');
+        console.log(comment, postId.getAttribute('href').slice(10))
         fetch('createComment', {
             method: 'post',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({
                 comment: comment,
-                postId: postId.getAttribute('href').slice(9),
+                postId: postId.getAttribute('href').slice(10),
                 timestamp: new Date(Date.now())
             })
         }).then(() => {window.location.reload() });

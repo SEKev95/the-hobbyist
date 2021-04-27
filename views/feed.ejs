@@ -19,6 +19,7 @@
     <!-- icons
         ================================================== -->
     <link rel="stylesheet" href="assets/css/icons.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
 
     <!-- CSS 
         ================================================== -->
@@ -449,16 +450,16 @@
                   
                     
                   
-                    <div class="space-y-5 flex-shrink-0 lg:w-7/12"> 
+                    <div class="indPost space-y-5 flex-shrink-0 lg:w-7/12"> 
                         <% if(posts) { %>
                         <% for(var i=0; i<posts.length; i++) {%>
                         <!-- post 1-->
-                        <div class="bg-white shadow rounded-md dark:bg-gray-900 -mx-2 lg:mx-0">
+                        <div class="post bg-white shadow rounded-md dark:bg-gray-900 -mx-2 lg:mx-0">
     
                             <!-- post header-->
                             <div class="flex justify-between items-center px-4 py-3">
                                 <div class="flex flex-1 items-center space-x-4">
-                                    <a href="#">
+                                    <a class="id" href="/posts?id=<%=posts[i]._id%>">
                                         <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">  
                                             <img src="<%= posts[i].authoravi %>" class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                         </div>
@@ -466,7 +467,8 @@
                                     <span class="block capitalize font-semibold dark:text-gray-100"> <%= posts[i].authorname %> </span>
                                 </div>
                               <div>
-                                <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>
+                                <button><i class="fa fa-trash"></i> Delete</button>
+                                <!-- <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>
                                 <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: hover;pos: top-right">
                               
                                     <ul class="space-y-1">
@@ -500,7 +502,7 @@
                                       </li>
                                     </ul>
                                 
-                                </div>
+                                </div> -->
                               </div>
                             </div>
                             <!-- img section -->
@@ -606,11 +608,11 @@
                                         
                                     </ul>
                                     </div>
-                                        <form class="comment hide" action="/createComment">
-                                        <input class="text "type="text" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none text">
+                                    <form class="comment">
+                                        <input class="text "type="text" placeholder="Add your Comment..">
                                         <input class="submitComment" type="submit" value=">">
                                         <button class="cancel">Cancel</button>
-                                      </form>
+                                    </form>
                                     
                                       <!-- <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
                                         <a href="#"> <i class="uil-image"></i></a>
@@ -1051,60 +1053,31 @@
 
                             <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-100 flex items-baseline justify-between py-4 px-6 dark:border-gray-800">
                                 <h2 class="font-semibold text-lg">Who to follow</h2>
-                                <a href="#"> Refresh</a>
+                                
                             </div>
                            
                             <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 dark:divide-gray-800 dark:text-gray-100">
+                                
+                                <!-- loop starts here -->
+                                <% if(people) { %>
+                                    <% for(var i=0; i< 4; i++) {%>
+                                    <% let random = Math.floor(Math.random()*people.length)%>
                                 <div class="flex items-center justify-between py-3">
                                     <div class="flex flex-1 items-center space-x-4">
-                                        <a href="profile.html">
-                                            <img src="<%= user.local.profileImg %>" class="bg-gray-200 rounded-full w-10 h-10">
+                                        <a href="<%= people[random].local.profile %>">
+                                            <img src="<%= people[random].local.profileImg %>" class="bg-gray-200 rounded-full w-10 h-10">
                                         </a>
                                         <div class="flex flex-col">
-                                            <span class="block capitalize font-semibold"> Kevin Charles </span>
-                                            <span class="block capitalize text-sm"> Australia </span>
-                                        </div>
-                                    </div>
-                                    
-                                    <a href="#" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
-                                </div>
-                                <div class="flex items-center justify-between py-3">
-                                    <div class="flex flex-1 items-center space-x-4">
-                                        <a href="profile.html">
-                                            <img src="assets/images/avatars/avatar-1.jpg" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex flex-col">
-                                            <span class="block capitalize font-semibold"> James Lewis </span>
-                                            <span class="block capitalize text-sm"> Istanbul </span>
+                                            <span class="block capitalize font-semibold"> <%= people[random].local.username %> </span>
+                                            <!-- <span class="block capitalize text-sm"> Istanbul </span> -->
                                         </div>
                                     </div>
                                     <a href="#" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
                                 </div>
-                                <div class="flex items-center justify-between py-3">
-                                    <div class="flex flex-1 items-center space-x-4">
-                                        <a href="profile.html">
-                                            <img src="assets/images/avatars/avatar-5.jpg" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex flex-col">
-                                            <span class="block capitalize font-semibold"> John Michael </span>
-                                            <span class="block capitalize text-sm"> New York </span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
-                                </div>
-                                <div class="flex items-center justify-between py-3">
-                                    <div class="flex flex-1 items-center space-x-4">
-                                        <a href="profile.html">
-                                            <img src="assets/images/avatars/avatar-7.jpg" class="bg-gray-200 rounded-full w-10 h-10">
-                                        </a>
-                                        <div class="flex flex-col">
-                                            <span class="block capitalize font-semibold"> Monroe Parker </span>
-                                            <span class="block capitalize text-sm"> Yeman </span>
-                                        </div>
-                                    </div>
-                                    
-                                    <a href="#" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
-                                </div>
+                                <% } %>
+                                <% } %>
+                               
+                               
 
                             </div>
 
@@ -1314,9 +1287,11 @@
     <script src="assets/js/custom.js"></script>
     <script src="feed.js"></script>
     <script src="post.js"></script>
+    
 
 
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

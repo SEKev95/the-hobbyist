@@ -10,16 +10,17 @@ module.exports = function(app, passport, db, multer, ObjectId) {
     // HOME/FEED SECTION =========================
     app.get('/feed', isLoggedIn, function(req, res) {
         db.collection('posts').find().toArray((err, result) => {
-          db.collection('comments').find().toArray((error, rslt) => {
-            
-// console.log(typeof result[0]._id, typeof rslt[0].post)
-
+          db.collection('comments').find().toArray((error, rslt) => { 
+          db.collection('users').find({}).toArray((error2, result2)=>{
+            console.log(result2)
             if (err) return console.log(err)
             res.render('feed.ejs', {
               user : req.user,
               posts: result,
-              comment: rslt
-            })
+              comment: rslt,
+              people: result2
+          })      
+          })
           })
         })
     });
@@ -105,18 +106,18 @@ app.delete('/messages', (req, res) => {
   })
 })
 
-app.get('/newpost', isLoggedIn, function(req, res) {
-  db.collection('posts').find().toArray((err, result) => {
-    db.collection('comments').find().toArray((error, rslt) => {
-      if (err) return console.log(err)
-      res.render('newpost.ejs', {
-        user : req.user,
-        posts: result,
-        comment: rslt
-      })
-    })
-  })
-});
+// app.get('/newpost', isLoggedIn, function(req, res) {
+//   db.collection('posts').find().toArray((err, result) => {
+//     db.collection('comments').find().toArray((error, rslt) => {
+//       if (err) return console.log(err)
+//       res.render('newpost.ejs', {
+//         user : req.user,
+//         posts: result,
+//         comment: rslt
+//       })
+//     })
+//   })
+// });
 
     // app.put('/feed', isLoggedIn, function(req, res){
     //     console.log(req.body)
@@ -259,7 +260,8 @@ app.get('/newpost', isLoggedIn, function(req, res) {
     app.delete('/delPost', (req, res) => {
       db.collection('posts').findOneAndDelete({
         _id: ObjectId(req.body.id)
-        }, (err, result) => {
+        }, (err, result) => { console.log(req.body.id)
+          console.log(typeof req.body.id)
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
@@ -290,8 +292,18 @@ app.get('/newpost', isLoggedIn, function(req, res) {
         })
         })
     });
-
+    app.get('/comment', isLoggedIn, function(req, res) {
+      db.collection('comments').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('feed.ejs', {
+          user : req.user,
+          comments: result
+      })
+      })
+  });
+ 
     app.post('/createComment', (req, res) => {
+      console.log(req.body)
         const comingFromPage = req.headers['referer'].slice(req.headers['origin'].length);
         let oId = ObjectId(req.body.postId)
         db.collection('comments').insertOne({
@@ -376,3 +388,4 @@ function isLoggedIn(req, res, next) {
 
     res.redirect('/');
 }
+
