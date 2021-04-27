@@ -11,3 +11,6 @@ We are passionate collectors, providing you the best space to show off your grea
 Users are able to login or signup for their own profiles and share/ show of anything that they collect. This website is for everyone who wants to have a digital space to talk about the things that they love.
 
 Users are also able to put pieces up for buy ion the market place, and have heated disscusions on our forum page.
+
+run node server.js
+and it is on localhost:9999
