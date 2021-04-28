@@ -30,7 +30,10 @@
 </head>
 
 <body>
-
+    <% if (avi !== null){avi = avi;} else  { %>
+       <% avi = {profileImg: '/images/avatars/avatar-2.jpg'} }%>
+   
+        
 
     <div id="wrapper">
 
@@ -49,30 +52,24 @@
             </div>
             <div class="sidebar_inner" data-simplebar>
                 <div class="flex flex-col items-center my-6 uk-visible@s">
-                    <div
-                        class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24">
-                        <img src="<%= user.local.profileImg %>"
-                            class="bg-gray-200 border-4 border-white rounded-full w-full h-full">
+                    <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24">
+                        
+                        <img src="<%= avi.profileImg %>" class="bg-gray-200 border-4 border-white rounded-full w-full h-full">
                     </div>
                     <a href="/profile" class="text-xl font-medium capitalize mt-4 uk-link-reset"> <%= user.local.username %>
                     </a>
                     <div class="flex justify-around w-full items-center text-center uk-link-reset text-gray-800 mt-6">
-                        <div>
-                            <a href="#">
-                                <strong>Post</strong>
-                                <div> 130</div>
-                            </a>
-                        </div>
+                       
                         <div>
                             <a href="#">
                                 <strong>Following</strong>
-                                <div> 1,230</div>
+                                <div><%= follows %></div>
                             </a>
                         </div>
                         <div>
                             <a href="#">
                                 <strong>Followers</strong>
-                                <div> 2,430</div>
+                                <div><%= followers %></div>
                             </a>
                         </div>
                     </div>
@@ -342,7 +339,7 @@
                             </ul>
                             <a href="#" class="see-all">See all</a>
                         </div>
-
+ 
                         <!-- Messages -->
 
                         <a href="#" class="header-links-item">
@@ -424,7 +421,7 @@
                         <!-- profile -->
 
                         <a href="#">
-                            <img src="<%= user.local.profileImg %>" class="header-avatar" alt="">
+                            <img src="<%= avi.profileImg %>" class="header-avatar" alt="">
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
@@ -461,7 +458,7 @@
                                 <div class="flex flex-1 items-center space-x-4">
                                     <a class="id" href="/posts?id=<%=posts[i]._id%>">
                                         <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">  
-                                            <img src="<%= posts[i].authoravi %>" class="bg-gray-200 border border-white rounded-full w-8 h-8">
+                                            <img src="<%= avi.profileImg %>" class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                         </div>
                                     </a>
                                     <span class="block capitalize font-semibold dark:text-gray-100"> <%= posts[i].authorname %> </span>
@@ -524,12 +521,12 @@
                                
                                 <div class="flex space-x-4 lg:font-bold">
                                     <a href="#" class="flex items-center space-x-2">
-                                        <div class="p-2 rounded-full text-black">
+                                        <!-- <div class="p-2 rounded-full text-black">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="22" height="22" class="dark:text-gray-100">
                                                 <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                                             </svg>
                                         </div>
-                                        <div> Like</div>
+                                        <div> Like</div> -->
                                     </a>
                                     <a href="#" class="flex items-center space-x-2">
                                         <div class="p-2 rounded-full text-black">
@@ -540,10 +537,10 @@
                                         <a href="/post?id=<%=posts[i]._id%>"><button class="commentBox">Post</button></a>
                                     </a>
                                     <a href="#" class="flex items-center space-x-2 flex-1 justify-end">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="22" height="22" class="dark:text-gray-100">
+                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="22" height="22" class="dark:text-gray-100">
                                             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                                         </svg>
-                                        <div> Share</div>
+                                        <div> Share</div> -->
                                     </a>
                                 </div>
                                 <div class="flex items-center space-x-3"> 
@@ -1062,17 +1059,19 @@
                                 <% if(people) { %>
                                     <% for(var i=0; i< 4; i++) {%>
                                     <% let random = Math.floor(Math.random()*people.length)%>
-                                <div class="flex items-center justify-between py-3">
+                                <div data-id="<%= people[random]._id %>" class="flex items-center justify-between py-3">
                                     <div class="flex flex-1 items-center space-x-4">
                                         <a href="<%= people[random].local.profile %>">
-                                            <img src="<%= people[random].local.profileImg %>" class="bg-gray-200 rounded-full w-10 h-10">
+                                            <!-- <img src="images/avatars\avatar-2.jpg" class="bg-gray-200 rounded-full w-10 h-10"> -->
                                         </a>
                                         <div class="flex flex-col">
                                             <span class="block capitalize font-semibold"> <%= people[random].local.username %> </span>
                                             <!-- <span class="block capitalize text-sm"> Istanbul </span> -->
                                         </div>
                                     </div>
-                                    <a href="#" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
+                                    <button class="followButton">
+                                    <a href="#" class="newButton border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 dark:border-gray-800"> Follow </a>
+                                    </button>
                                 </div>
                                 <% } %>
                                 <% } %>

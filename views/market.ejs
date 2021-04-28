@@ -36,7 +36,8 @@
 </head>
 
 <body>
-
+    <% if (avi !== null){avi = avi;} else  { %>
+        <% avi = {profileImg: '/images/avatars/avatar-2.jpg'} }%>
 
     <div id="wrapper">
 
@@ -62,12 +63,7 @@
                     </div>
                     <a href="/profile" class="text-xl font-medium capitalize mt-4 uk-link-reset"> <%= user.local.username %></a>
                     <div class="flex justify-around w-full items-center text-center uk-link-reset text-gray-800 mt-6">
-                        <div>
-                            <a href="#">
-                                <strong>Post</strong>
-                                <div> 130</div>
-                            </a>
-                        </div>
+                        
                         <div>
                             <a href="#">
                                 <strong>Following</strong>

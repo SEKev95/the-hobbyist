@@ -9,54 +9,86 @@ module.exports = function(app, passport, db, multer, ObjectId) {
 
     // HOME/FEED SECTION =========================
     app.get('/feed', isLoggedIn, function(req, res) {
-        db.collection('posts').find().toArray((err, result) => {
+     
+      db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err6, result6)=>{
+        if( result6 === null ) {
+          db.collection('follows').insertOne({follows: [], userId: ObjectId(req.user._id)} )
+          db.collection('following').insertOne({followers:[], userId: ObjectId(req.user._id)} ) 
+        }
+      })
+
+      
+      db.collection('posts').find().toArray((err, result) => {
           db.collection('comments').find().toArray((error, rslt) => { 
           db.collection('users').find({}).toArray((error2, result2)=>{
-            console.log(result2)
-            if (err) return console.log(err)
-            res.render('feed.ejs', {
+            db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err3, result3)=>{
+              db.collection('follows').findOne({userId: ObjectId(req.user._id)}, (err4, result4)=>{ 
+               db.collection('following').findOne({userId: ObjectId(req.user._id)}, (err5, result5)=>{   
+               if (err) return console.log(err)
+               console.table(Object.entries(result5.following))
+               console.table(Object.entries(result4.follows))
+                res.render('feed.ejs', {
               user : req.user,
               posts: result,
               comment: rslt,
-              people: result2
-          })      
+              people: result2,
+              avi: result3,
+              follows:  `${result4.follows.length}`,
+              followers: `${result5.following.length}`
+          })   
+        })
+        })
+             
+        })  
+                
           })
           })
         })
     });
     app.get('/market', isLoggedIn, function(req, res) {
         db.collection('market').find().toArray((err, result) => {
-          db.collection('comments').find().toArray((error, rslt) => {
+          
+            db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err2, result2)=>{
             if (err) return console.log(err)
             res.render('market.ejs', {
               user : req.user,
               market: result,
-              comment: rslt
+              avi: result2
+            })  
             })
-          })
+            
+          
         })
     });
     app.get('/setting', isLoggedIn, function(req, res) {
       db.collection('posts').find().toArray((err, result) => {
         db.collection('comments').find().toArray((error, rslt) => {
-          if (err) return console.log(err)
+          db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err2, result2)=>{
+           if (err) return console.log(err)
           res.render('setting.ejs', {
             user : req.user,
             posts: result,
-            comment: rslt
+            comment: rslt,
+            avi: result2
+          }) 
           })
+          
         })
       })
   });
   app.get('/chat', isLoggedIn, function(req, res) {
     db.collection('posts').find().toArray((err, result) => {
       db.collection('messages').find().toArray((error, rslt) => {
-        if (err) return console.log(err)
+        db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err2, result2)=>{
+          if (err) return console.log(err)
         res.render('chat.ejs', {
           user : req.user,
           posts: result,
-          messages: rslt
-        })
+          messages: rslt,
+          avi: result2
+        }) 
+        })  
+       
       })
     })
 });
@@ -105,6 +137,36 @@ app.delete('/messages', (req, res) => {
     res.send('Message deleted!')
   })
 })
+// the following/ follower system
+app.put('/follow/:otherUser', (req, res) => {
+  // logged in user following otherUser
+  db.collection('following')
+  .findOneAndUpdate({userId: ObjectId(req.user._id)}, {
+    $push: {
+      follows:[ObjectId(req.params.otherUser)]
+       
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: true
+  }, (err, result) => {
+    if (err) return res.send(err)
+    //  otherUser followed by logged in user
+    db.collection('followers')
+    .findOneAndUpdate({userId: ObjectId(req.params.otherUser)}, {
+      $push: {
+        followers:[ObjectId(req.user._id)] 
+      }
+    }, {
+      sort: {_id: -1},
+      upsert: true
+    }, (err, result) => {
+      if (err) return res.send(err)
+      res.send(result)
+    })  
+  })
+
+})
 
 // app.get('/newpost', isLoggedIn, function(req, res) {
 //   db.collection('posts').find().toArray((err, result) => {
@@ -149,13 +211,17 @@ app.delete('/messages', (req, res) => {
     app.get('/post', isLoggedIn, function(req, res) {
         db.collection('posts').findOne({_id: ObjectId(req.query.id)}, (err, result) => {
             db.collection('comments').find().toArray((error, rslt) => {
-                if (err) return console.log(err)
+              db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err2, result2)=>{
+               if (err) return console.log(err)
                 console.log(result, req.query.id);
                 res.render('post.ejs', {
                     user : req.user,
                     post: result,
-                    comments: rslt
-                })
+                    comments: rslt,
+                    avi: result2
+                }) 
+              })
+              
             })
         })
     });
@@ -204,46 +270,25 @@ app.delete('/messages', (req, res) => {
       })
     })
     // profile pic upload
-    app.post('/uploadAvi', (req, res) => {
-      if (req.files) {
-        console.log(req.files);
-        let file = req.files.file
-        let fileName = file.name
-        console.log(fileName);
-        file.mv('public/assets/images/avatars/' + fileName, function(err) {
-          if (err) {
-            res.send(err)
-          } else {
-            res.redirect('/feed')
-            // res.send("File Uploaded")
+    app.post('/uploadAvi', upload.single('file'), async (req, res) => {
+      console.log(req.file)
+      db.collection('picture').findOneAndUpdate({
+       userId: ObjectId(req.user._id)
+        }, {
+          $set:{
+              userId: ObjectId(req.user._id) ,
+              profileImg: "/img/" + req.file.filename  
           }
-        })
-        let profileImg ="assets/images/avatars/" + fileName
-        db.collection('users').findOneAndUpdate({
-          _id: ObjectId(req.user._id)
-        
-
-        }, {
-         $set:{
-        local: {
-          username : req.user.local.username,
-          email : req.user.local.email,
-          password : req.user.local.password,
-          profileImg,
-        },
-        __v: 0
-
-        } 
-
-        }, {
-          // if profile cant be found it would create a new profile which is why we set it to false
-          upsert: false
+        },{
+            upsert:true , 
+            new: true
         }, (err, result) => {
-          if (err) return console.log(err)
-          console.log('saved to database')
-        })
-      }
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/profile')
+      })
     })
+    // to the update posting
     app.put('/updatePost', (req, res) => {
       db.collection('posts').findOneAndUpdate({
         image: req.body.image,
@@ -270,15 +315,19 @@ app.delete('/messages', (req, res) => {
     //USER'S POSTS
     app.get('/profile', isLoggedIn, function(req, res) {
         db.collection('posts').find().toArray((err, result) => {
-            for(post in result) {
+        db.collection('picture').findOne({userId: ObjectId(req.user._id)}, (err2, result2)=>{
+         for(post in result) {
                 if(post.id != ObjectId(req.user.id))
                     delete result.post
             }
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
-            posts: result
-          })
+            posts: result,
+            avi: result2
+          }) 
+        })    
+          
         })
     });
     // COMMENTS SECTION
@@ -352,7 +401,8 @@ app.delete('/messages', (req, res) => {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+         
+         res.render('signup.ejs', { message: req.flash('signupMessage') });
         });
 
         // process the signup form

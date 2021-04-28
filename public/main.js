@@ -11,6 +11,16 @@ function deletePost(e) {console.log(e.target.classList)
     }).then(() => { window.location.reload() })  
   }
 }
+document.querySelector('.newButton').addEventListener('click' , newFollow)
+function newFollow(e){
+let otherUser = e.target.parentNode.dataset.id
+  console.log(e.target.parentNode.dataset)
+  fetch('/follow/' + otherUser) , {
+    method: 'put', 
+    headers: {'Content-Type' : 'application/json'},
+  }.then(() => { window.location.reload() })  
+  
+}
 // Array.from(thumbUp).forEach(function(element) {
 //   element.addEventListener('click', function(){
 //     const name = this.parentNode.parentNode.childNodes[1].innerText

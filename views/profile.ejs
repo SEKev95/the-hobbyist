@@ -40,7 +40,8 @@
 </head>
 
 <body>
-    
+    <% if (avi !== null){avi = avi;} else  { %>
+        <% avi = {profileImg: '/images/avatars/avatar-2.jpg'} }%>
     
         <div id="wrapper">
     
@@ -61,18 +62,13 @@
                 <div class="flex flex-col items-center my-6 uk-visible@s">
                     <div
                         class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transition m-0.5 mr-2  w-24 h-24">
-                        <img src="assets/images/avatars/avatar-2.jpg"
+                        <img src="<%= avi.profileImg %>"
                             class="bg-gray-200 border-4 border-white rounded-full w-full h-full">
                     </div>
                     <a href="/profile" class="text-xl font-medium capitalize mt-4 uk-link-reset"> <%= user.local.username %>
                     </a>
                     <div class="flex justify-around w-full items-center text-center uk-link-reset text-gray-800 mt-6">
-                        <div>
-                            <a href="#">
-                                <strong>Post</strong>
-                                <div> 130</div>
-                            </a>
-                        </div>
+                        
                         <div>
                             <a href="#">
                                 <strong>Following</strong>
@@ -419,7 +415,7 @@
                         <!-- profile -->
 
                         <a href="#">
-                            <img src="assets/images/avatars/avatar-2.jpg" class="header-avatar" alt="">
+                            <img src="<%= avi.profileImg %>" class="header-avatar" alt="">
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
@@ -441,7 +437,9 @@
 
                     <div>
                         <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full m-0.5 mr-2  w-56 h-56 relative overflow-hidden uk-transition-toggle">  
-                            <img src="assets/images/avatars/avatar-2.jpg" class="bg-gray-200 border-4 border-white rounded-full w-full h-full dark:border-gray-900">
+                            <div style="background-image: url(<%= avi.profileImg %>);
+                                background-size: cover;
+                                background-position: center; " class="bg-gray-200 border-4 border-white rounded-full w-full h-full dark:border-gray-900"></div>
 
                             <div class="absolute -bottom-3 custom-overly1 flex justify-center pt-4 pb-7 space-x-3 text-2xl text-white uk-transition-slide-bottom-medium w-full">
                                 <a href="#" class="hover:text-white">
@@ -507,15 +505,17 @@
                                 </div>
 
                             </div>
-<form class="formTwo" action="/uploadAvi" method="POST" enctype="multipart/form-data">
-        <p> <input class="chooseFile" type="file" name="file"></p>
-        <p> <input id="upload" type="submit" name="submit" value="upload"></p>
-      </form>
-                            <div class="divide-gray-300 divide-transparent divide-x grid grid-cols-3 lg:text-left lg:text-lg mt-3 text-center w-full dark:text-gray-100">
+            <form class="formTwo" action="/uploadAvi" method="POST" enctype="multipart/form-data">
+                    <p> <input class="chooseFile" type="file" name="file"></p>
+                    <p> <input id="upload" type="submit" name="submit" value="upload"></p>
+                    </form>
+                    
+                    <!-- followers/following         -->
+                    <!-- <div class="divide-gray-300 divide-transparent divide-x grid grid-cols-3 lg:text-left lg:text-lg mt-3 text-center w-full dark:text-gray-100">
                                 <div class="flex lg:flex-row flex-col"> 120k <strong class="lg:pl-2">Posts</strong></div>
                                 <div class="lg:pl-4 flex lg:flex-row flex-col"> 420k <strong class="lg:pl-2">Followers</strong></div>
                                 <div class="lg:pl-4 flex lg:flex-row flex-col"> 530k <strong class="lg:pl-2">Following</strong></div>
-                            </div>
+                            </div> -->
  
                     </div>
 
